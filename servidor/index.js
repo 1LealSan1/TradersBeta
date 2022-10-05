@@ -3,7 +3,7 @@ const express = require("express");
 //creamos el servidor
 const app = express();
 //asignamos puerto
-port=4000;
+port=5000;
 
 //asignamos una ruta
 app.get("/",(req, res) =>{
