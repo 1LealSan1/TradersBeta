@@ -1,15 +1,20 @@
 const express = require("express");
+const conectarDB = require("./configDB/DB");
 
 //creamos el servidor
 const app = express();
+
 //asignamos puerto
 port=5000;
 
-//asignamos una ruta
-app.get("/",(req, res) =>{
-    res.send(`hola a todos el servidor corre en el ${port}`)
-})
+//permitimos el uso de json
+app.use(express.json());
+
+//conectar a la bd
+conectarDB();
+
+app.use("/api/usuariosTrader", require("./routes/RouteUserTrader"));
 
 app.listen(port, () => {
-    console.log("el servidor corre en el puerto", port)
+    console.log("el servidor corre en el puerto", port);
 })
