@@ -7,7 +7,7 @@ port=5000;
 
 //asignamos una ruta
 app.get("/",(req, res) =>{
-    res.send(`hola a todos el servidor corre en el puerto ${port}`)
+    res.send(`hola a todos el servidor corre en el ${port}`)
 })
 
 app.listen(port, () => {
