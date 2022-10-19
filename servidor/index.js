@@ -14,7 +14,7 @@ app.use(express.json());
 conectarDB();
 
 app.use("/Users", require("./routes/RouteUserTrader"));
-app.use("/UsersPeticion", require("./routes/RouteUserPeticion"));
+app.use("/UsersPeticion", require("./routes/RouteUserTrader"));
 
 app.listen(port, () => {
     console.log("el servidor corre en el puerto", port);
