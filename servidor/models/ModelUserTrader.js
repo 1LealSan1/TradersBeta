@@ -13,7 +13,7 @@ const UserTraderSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Ubiacion: {
+    Ubicacion: {
         type: Number,
         required: false
     }
