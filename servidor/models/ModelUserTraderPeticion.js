@@ -20,6 +20,10 @@ const UserTraderPeticionSchema = mongoose.Schema({
     Category: {
         type: String,
         required: true
+    },
+    IDUserTrader:{
+        type: String,
+        required: false
     }
 });
 

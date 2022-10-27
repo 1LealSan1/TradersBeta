@@ -14,9 +14,9 @@ const UserTraderSchema = mongoose.Schema({
         required: true
     },
     Ubicacion: {
-        type: Number,
+        type: String,
         required: false
     }
 });
 
-module.exports = mongoose.model('UsersTraders', UserTraderSchema);
+module.exports = mongoose.model('UsersClients', UserTraderSchema);

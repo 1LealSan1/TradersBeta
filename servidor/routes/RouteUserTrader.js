@@ -1,9 +1,9 @@
 const express = require("express")
 const router = express.Router();
-const UserTraderController = require("../controllers/ControllerUserTrader");""
+const UserTraderController = require("../controllers/ControllerUserClient");""
 
 //api/usuariosTrader
-router.post("/", UserTraderController.crearUserTrader)
+router.post("/", UserTraderController.crearUserClient)
 
 //api/usuariosTraderPeticion
 router.post("/Peticion", UserTraderController.crearUserTraderPeticion)

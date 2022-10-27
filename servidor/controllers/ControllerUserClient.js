@@ -1,14 +1,14 @@
-const ModelUserTrader = require("../models/ModelUserTrader");
+const ModelUserClient = require("../models/ModelUserClient");
 const ModelUserTraderPeticion = require("../models/ModelUserTraderPeticion");
 
-exports.crearUserTrader = async (req, res) =>{
+exports.crearUserClient = async (req, res) =>{
     try {
-        let userTrader;
+        let user;
 
-        userTrader = new ModelUserTrader(req.body);
+        user = new ModelUserClient(req.body);
 
-        await userTrader.save();
-        res.send(userTrader);
+        await user.save();
+        res.send(user);
         
     } catch (error) {
         console.log(error);
