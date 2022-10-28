@@ -28,3 +28,25 @@ exports.crearUserTraderPeticion = async (req, res) =>{
         console.log(error);
     }
 }
+
+exports.verPeticionesUser = async (req, res) =>{
+    try {
+        const data = await ModelUserTraderPeticion.find({
+            IDUserClient : req.params.id
+        });
+        res.json(data)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+exports.ActualizarUbicacion = async (req, res) =>{
+    try {
+        await ModelUserClient.findByIdAndUpdate(req.params.id, {
+            Ubicacion: req.body.Ubicacion
+        }) 
+        res.send();
+    } catch (error) {
+        console.log(error);
+    }
+}

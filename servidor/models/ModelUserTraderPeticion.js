@@ -24,6 +24,11 @@ const UserTraderPeticionSchema = mongoose.Schema({
     IDUserTrader:{
         type: String,
         required: false
+    },
+    Status: {
+        //tipo: en espera, en progreso, terminado
+        type: String,
+        required: true
     }
 });
 
