@@ -3,7 +3,7 @@ const router = express.Router();
 const UserTraderController = require("../controllers/ControllerUserTrader");
 
 //api/usuariosTrader
-router.post("/", UserTraderController.CrearUserTrader);
+router.post("/CrearUser", UserTraderController.CrearUserTrader);
 //api/aceptarPeticion
 router.put('PeticionAceptada/:id',UserTraderController.AceptarPeticion);
 //api/usuariospeticionesaceptadas

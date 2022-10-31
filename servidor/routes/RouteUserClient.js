@@ -3,7 +3,7 @@ const router = express.Router();
 const UserTraderController = require("../controllers/ControllerUserClient");""
 
 //api/usuariosTrader
-router.post("/", UserTraderController.crearUserClient)
+router.post("/CrearUser", UserTraderController.crearUserClient)
 
 //api/usuariosCrearPeticion
 router.post("/Peticion", UserTraderController.crearUserTraderPeticion)
