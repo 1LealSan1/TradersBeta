@@ -50,7 +50,7 @@ exports.CancelarPeticion = async (req, res) =>{
 exports.verPeticionesTraderAceptadas = async (req, res) =>{
     try {
         const data = await ModelUserTraderPeticion.find({
-            IdUserTrader : req.params.id
+            IDUserTrader : req.params.id
         });
         res.json(data)
     } catch (error) {
