@@ -5,7 +5,7 @@ const UserTraderController = require("../controllers/ControllerUserTrader");
 //api/usuariosTrader
 router.post("/CrearUser", UserTraderController.CrearUserTrader);
 //api/aceptarPeticion
-router.put('PeticionAceptada/:id',UserTraderController.AceptarPeticion);
+router.put('/PeticionAceptada/:id',UserTraderController.AceptarPeticion);
 //api/usuariospeticionesaceptadas
 router.get('/PeticionesAceptadas/:id', UserTraderController.verPeticionesTraderAceptadas)
 //api/terminarPeticion
