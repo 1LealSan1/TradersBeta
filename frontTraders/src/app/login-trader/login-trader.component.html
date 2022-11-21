@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Traders</title>
+</head>
+<body>
+  <div>
+    <p>
+      <mat-toolbar class="MenuBarTrader font">
+        <span class="marginLogo">TradersLm</span>
+      </mat-toolbar>
+    </p>    
+  </div>
+  <mat-grid-list cols="1" rowHeight="3:1">
+    <mat-grid-tile>
+      <div class="inputCenter">
+        <div class="alignCenter font">
+          <span>Crear Cuenta Trader</span>
+          <br>
+        </div>
+        <div class="alignCenter font2">
+          <u style="color: #A88493;">Usar numero de telefono</u><u style="color: #D0C9D0">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u>
+        </div>
+        <div class="alignCenter">
+          <form action="" method="post" >
+            <mat-form-field appearance="outline">
+                <mat-label>Pais</mat-label>
+                <mat-select required>
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let pais of paises" [value]="pais">{{pais}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Numero de telefono</mat-label>
+                <input matInput type="tel" maxlength="10" min="10" placeholder="6688778877" required>
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" required>
+            </mat-form-field>
+            <br>          
+            <mat-form-field appearance="outline">
+              <mat-label>Repetir Password</mat-label>
+              <input matInput type="password" required>
+          </mat-form-field>
+          <br>
+          <label><input type="checkbox" required> Acepto los términos del servicio</label>
+          <br><br>
+          <button mat-button class="btn-trader" style="margin-left: 8px;">Siguiente</button>  
+        </form>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</body>
+</html>

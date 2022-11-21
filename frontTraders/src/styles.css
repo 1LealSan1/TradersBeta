@@ -1,4 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    height: 100%; 
+    background-color: #CFD1E0;
+    margin: 0;
+}
+.MenuBarClients{
+    background-color: #B4A8AA;
+    color: #1E1E1E;
+}
+.MenuBarTrader{
+    background-color: #A88493;
+    color: #F9F7FA;
+    opacity: 70%;
+}
+.marginLogo{
+    margin-left: 10px
+}
+.font{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 160%;
+}
+.font2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 110%;
+}
+.inputCenter{
+    background-color: #F9F7FA;
+    border-radius: 5px;
+    width: 470px;
+    height: 450px;
+}
+.alignCenter{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.btn-client{
+    background-color: #1D56CF;
+    opacity: 70%;
+    color: #F9F7FA;
+    width: 390px;
+    height: 40px;
+}
+.btn-trader{
+    background-color: #A88493;
+    opacity: 70%;
+    color: #F9F7FA;
+    width: 390px;
+    height: 40px;  
+}
