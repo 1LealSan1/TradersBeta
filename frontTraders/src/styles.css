@@ -14,8 +14,15 @@ body {
     color: #F9F7FA;
     opacity: 70%;
 }
+.MenuInicioClients{
+    background-color: #D0C9D0;
+    color: #1E1E1E;
+}
 .marginLogo{
     margin-left: 10px
+}
+.labelmenu{
+    margin-left: 100px;
 }
 .font{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

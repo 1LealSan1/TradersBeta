@@ -16,11 +16,22 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { LoginTraderComponent } from './login-trader/login-trader.component';
+import { RegistrarTraderComponent } from './registrar-trader/registrar-trader.component';
+import { RegistrarUserComponent } from './registrar-user/registrar-user.component';
+import { IndexUserComponent } from './index-user/index-user.component';
+import { IndexTraderComponent } from './index-trader/index-trader.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginUserComponent,
     LoginTraderComponent,
+    RegistrarTraderComponent,
+    RegistrarUserComponent,
+    IndexUserComponent,
+    IndexTraderComponent,
 
   ],
   imports: [
@@ -36,7 +47,8 @@ import { LoginTraderComponent } from './login-trader/login-trader.component';
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
-    
+    MatExpansionModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
