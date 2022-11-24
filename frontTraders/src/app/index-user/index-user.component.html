@@ -10,28 +10,32 @@
   <div>
         <mat-toolbar class="MenuInicioClients font">
             <a href="http://localhost:4200/User/inicio" style="text-decoration: none; color: #1E1E1E;"><span class="marginLogo">TradersLm</span></a>
-            <mat-accordion>
-                <mat-expansion-panel style="margin-left: 90px">
+            <mat-accordion style="padding-left: 90px">
+                <mat-expansion-panel>
                   <mat-expansion-panel-header>
                     <mat-panel-title>
                         Direccion
                     </mat-panel-title>
-                    <mat-panel-description style="margin-left: 90px">
-                        <mat-icon>map</mat-icon>
+                    <mat-panel-description style="padding-left: 90px">
+                        <mat-icon>room</mat-icon>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-form-field appearance="fill">
-                    <mat-label>Ingresa tu dirreccion</mat-label>
+                    <mat-label>Ingresa tu direccion</mat-label>
                     <input matInput type="text">
                   </mat-form-field> 
                 </mat-expansion-panel>
             </mat-accordion>
             <button mat-button>Pedidos</button>
-            <div style="padding: 1100px">
+            <div style="margin-left: 1300px">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
+                  <button mat-menu-item>
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Configuracion</span>
+                  </button>
                   <button mat-menu-item>
                     <mat-icon>home</mat-icon>
                     <span>Cerrar sesion</span>
@@ -40,15 +44,19 @@
             </div>
         </mat-toolbar>
   </div>
-  <mat-grid-list cols="2" rowHeight="3:1">
+  <mat-grid-list cols="2" rowHeight="2:1">
     <mat-grid-tile>
-      <div>
-        <h1>Lugares cerca de mi</h1>
+      <div >
+
       </div>
     </mat-grid-tile>
     <mat-grid-tile>
-      <div>
-        <h1>Necesitas ayuda en algo?, pide Traders</h1>
+      <div style="padding-top: 300px;">
+        <p class="font3">Necesitas ayuda en <br><br>algo?, pide Traders</p>
+        <br>
+        <p>
+          <button mat-raised-button class="button-user-index">Hacer peticion</button>
+        </p>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

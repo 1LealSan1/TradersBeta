@@ -22,7 +22,13 @@ import { IndexUserComponent } from './index-user/index-user.component';
 import { IndexTraderComponent } from './index-trader/index-trader.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
-
+import { CrearPeticionComponent } from './crear-peticion/crear-peticion.component';
+import { PeticionesDisponblesComponent } from './peticiones-disponbles/peticiones-disponbles.component';
+import {MatListModule} from '@angular/material/list';
+import { ListaPeticionesComponent } from './lista-peticiones/lista-peticiones.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +38,9 @@ import {MatMenuModule} from '@angular/material/menu';
     RegistrarUserComponent,
     IndexUserComponent,
     IndexTraderComponent,
+    CrearPeticionComponent,
+    PeticionesDisponblesComponent,
+    ListaPeticionesComponent,
 
   ],
   imports: [
@@ -49,6 +58,10 @@ import {MatMenuModule} from '@angular/material/menu';
     MatCheckboxModule,
     MatExpansionModule,
     MatMenuModule,
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

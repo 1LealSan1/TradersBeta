@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Usuario</title>
+</head>
+<body>
+  <div>
+    <p>
+      <mat-toolbar class="MenuBarClients font">
+        <span class="marginLogo">TradersLm</span>
+      </mat-toolbar>
+    </p>    
+  </div>
+  <mat-grid-list cols="1" rowHeight="3:1">
+    <mat-grid-tile>
+      <div class="inputCenter">
+        <div class="btnExit">
+            <button mat-icon-button>
+                <mat-icon>reply</mat-icon>
+            </button>
+        </div>
+        <div class="alignCenter font">
+          <u style="color: #1e1e1eae;">Crear Peticion</u><u style="color: #D0C9D0">ㅤㅤㅤ ㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u>
+        </div>
+        <div class="alignCenter">
+          <form action="" method="post">
+            <mat-form-field  appearance="outline" [style.width.px]=430>
+                <mat-label>Oficio trader</mat-label>
+                <mat-select required>
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let oficio of oficios" [value]="oficio" >{{oficio}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline" [style.width.px]=430>
+                <mat-label>Detalles de la Peticion</mat-label>
+                <input type="text" matInput required>
+            </mat-form-field>     
+            <mat-form-field  appearance="outline" [style.width.px]=430>
+                <mat-label>Metodo de pago</mat-label>
+                <mat-select required>
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let listpago of listpagos" [value]="listpago">{{listpago}}</mat-option>
+                </mat-select>
+            </mat-form-field><br>
+          <label><input type="checkbox" required> Acepto los términos del servicio</label>
+          <br><br>
+          <button mat-button class="btn-client" style="margin-left: 8px;">Siguiente</button>  
+        </form>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</body>
+</html>
