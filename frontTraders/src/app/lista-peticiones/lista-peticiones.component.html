@@ -10,7 +10,7 @@
   <div>
     <p>
       <mat-toolbar class="MenuBarTrader font">
-        <a href="http://localhost:4200/User/inicio" style="text-decoration: none; color: #F9F7FA;"><span class="marginLogo">TradersLm</span></a>
+        <a href="http://localhost:4200/Trader/inicio" style="text-decoration: none; color: #F9F7FA;"><span class="marginLogo">TradersLm</span></a>
         <mat-accordion style="padding-left: 90px">
             <mat-expansion-panel>
               <mat-expansion-panel-header>
@@ -46,8 +46,8 @@
       </mat-toolbar>
     </p>   
   </div>
-  <mat-grid-list cols="1" rowHeight="2:1">
-    <mat-grid-tile [style.padding-bottom.px]=150>
+  <mat-grid-list cols="1" rowHeight="2:1" [style.padding-bottom.px]=100>
+    <mat-grid-tile>
       <div class="inputCenterPeticiones">
         <div class="alignCenter2 font4"><br><br>
           <span>Peticiones disponibles</span>
@@ -72,7 +72,7 @@
             </table>
           
             <mat-paginator #paginator
-                [length]="dataSource?.data?.length"
+                [length]="dataSource.data.length"
                 [pageIndex]="0"
                 [pageSize]="10"
                 [pageSizeOptions]="[5, 10]"
