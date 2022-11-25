@@ -36,7 +36,7 @@
                     <mat-icon>account_circle</mat-icon>
                     <span>Configuracion</span>
                   </button>
-                  <button mat-menu-item>
+                  <button mat-menu-item onclick="location.href='http://localhost:4200/Trader/loginTrader'">
                     <mat-icon>home</mat-icon>
                     <span>Cerrar sesion</span>
                   </button>
@@ -46,8 +46,6 @@
   </div>
   <mat-grid-list cols="2">
     <mat-grid-tile>
-    </mat-grid-tile>
-    <mat-grid-tile>
       <div>
         <p class="font3">Te interesa <br><br>completar una <br><br> peticion?</p>
         <br>
@@ -55,6 +53,20 @@
           <button mat-raised-button class="button-trader-index">Ver peticiones</button>
         </p>
       </div>
+    </mat-grid-tile>
+    <mat-grid-tile > 
+      <mat-tab-group dynamicHeight style="background-color: #f9f7fad7; border-radius: 8px;">
+        <mat-tab label="Status de ofertas a peticiones">
+          <div class="example-small-box mat-elevation-z4">
+            Small content
+          </div>
+        </mat-tab>
+        <mat-tab label="Historial de peticiones">
+          <div class="example-large-box mat-elevation-z4">
+            Large content
+          </div>
+        </mat-tab>
+      </mat-tab-group>   
     </mat-grid-tile>
   </mat-grid-list>
 

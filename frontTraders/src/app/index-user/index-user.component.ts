@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index-user.component.css']
 })
 export class IndexUserComponent implements OnInit {
-
+  showFiller = false;
   constructor() { }
 
   ngOnInit(): void {

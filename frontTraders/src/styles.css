@@ -51,6 +51,12 @@ body {
     width: 470px;
     height: 450px;
 }
+.inputCenter2{
+    background-color: #F9F7FA;
+    border-radius: 5px;
+    width: 470px;
+    height: 400px;
+}
 .inputCenterPeticiones{
     background-color: #F9F7FA;
     border-radius: 5px;
@@ -100,3 +106,15 @@ body {
     height: 50px;
     font-size: large; 
 }
+.example-small-box, .example-large-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  .example-large-box {
+    height: auto;
+    width: auto;
+  }

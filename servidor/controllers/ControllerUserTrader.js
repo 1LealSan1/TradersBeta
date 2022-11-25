@@ -1,6 +1,6 @@
 const ModelUserTrader = require("../models/ModelUserTrader");
 const ModelUserTraderPeticion = require("../models/ModelUserTraderPeticion");
-
+const jwt = require('jsonwebtoken');
 exports.CrearUserTrader = async (req, res) =>{
     try {
         let user;
@@ -67,4 +67,12 @@ exports.ActualizarUbicacion = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
+}
+exports.IniciarSesionTrader = async (req, res) => {
+    const { telefono, Password } = req.body;
+    const data = await ModelUserTrader.findOne({telefono});
+    if (!data) return res.status(401).send('The Telefono doen\' exists');
+    if (data.Password !== Password) return res.status(401).send('Wrong Password');
+    const token = jwt.sign({_id: data._id}, 'secretkey');
+    return res.status(200).json({token});
 }

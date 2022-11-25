@@ -13,4 +13,6 @@ router.get('/Peticions/:id', UserTraderController.verPeticionesUser)
 
 //api/actualizarUbicacion
 router.put("/Ubicacion/:id", UserTraderController.ActualizarUbicacion)
+
+router.post('/Login', UserTraderController.IniciarSesionClient)
 module.exports = router;

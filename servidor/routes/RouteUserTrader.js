@@ -14,4 +14,8 @@ router.put('/PeticionTerminada/:id', UserTraderController.TerminarPeticion)
 router.put('/PeticionCancelada/:id', UserTraderController.CancelarPeticion)
 //api/actualizarUbicacion
 router.put("/Ubicacion/:id",UserTraderController.ActualizarUbicacion)
+//api/login
+router.post('/Login', UserTraderController.IniciarSesionTrader)
+
+
 module.exports = router;

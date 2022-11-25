@@ -1,5 +1,6 @@
 const ModelUserClient = require("../models/ModelUserClient");
 const ModelUserTraderPeticion = require("../models/ModelUserTraderPeticion");
+const jwt = require('jsonwebtoken');
 
 exports.crearUserClient = async (req, res) =>{
     try {
@@ -49,4 +50,12 @@ exports.ActualizarUbicacion = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
+}
+exports.IniciarSesionClient = async (req, res) => {
+    const { telefono, Password } = req.body;
+    const data = await ModelUserClient.findOne({telefono});
+    if (!data) return res.status(401).send('The Telefono doen\' exists');
+    if (data.Password !== Password) return res.status(401).send('Wrong Password');
+    const token = jwt.sign({_id: data._id}, 'secretkey');
+    return res.status(200).json({token});
 }

@@ -15,6 +15,7 @@ conectarDB();
 
 app.use("/Users", require("./routes/RouteUserClient"));
 app.use("/UsersTraders", require("./routes/RouteUserTrader"));
+app.use("/Token", require("./routes/RouterToken"));
 
 app.listen(port, () => {
     console.log("el servidor corre en el puerto", port);
