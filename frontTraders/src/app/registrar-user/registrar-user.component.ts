@@ -9,9 +9,16 @@ export class RegistrarUserComponent implements OnInit {
   paises: string[] = [
     'Mexico +52'
   ]
+  user = {
+    Telefono: '',
+    Password: '',
+  }
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  RegistrarTrader(){
+    console.log(this.user)
+  }
 }
