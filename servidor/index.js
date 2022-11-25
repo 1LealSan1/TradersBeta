@@ -13,9 +13,8 @@ app.use(express.json());
 //conectar a la bd
 conectarDB();
 
-app.use("/Users", require("./routes/RouteUserClient"));
-app.use("/UsersTraders", require("./routes/RouteUserTrader"));
-app.use("/Token", require("./routes/RouterToken"));
+app.use("/Users", require("./controllers/ControllerUserClient"));
+app.use("/UsersTraders", require("./controllers/ControllerUserTrader"));
 
 app.listen(port, () => {
     console.log("el servidor corre en el puerto", port);

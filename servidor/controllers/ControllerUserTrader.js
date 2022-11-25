@@ -1,7 +1,11 @@
 const ModelUserTrader = require("../models/ModelUserTrader");
 const ModelUserTraderPeticion = require("../models/ModelUserTraderPeticion");
 const jwt = require('jsonwebtoken');
-exports.CrearUserTrader = async (req, res) =>{
+
+const express = require("express")
+const router = express.Router();
+
+router.post("/CrearUser", async (req, res) =>{
     try {
         let user;
 
@@ -13,9 +17,9 @@ exports.CrearUserTrader = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
-}
+})
 
-exports.AceptarPeticion = async (req, res) =>{
+router.put('/PeticionAceptada/:id',  verifyToken, async (req, res) =>{
     try {
         await ModelUserTraderPeticion.findByIdAndUpdate(req.params.id, {
             IDUserTrader: req.body.IDUserTrader,
@@ -26,8 +30,9 @@ exports.AceptarPeticion = async (req, res) =>{
     } catch (error) {
         console.log(error)
     }
-}
-exports.TerminarPeticion = async (req, res) =>{
+})
+
+router.put('/PeticionCompletada/:id', verifyToken,async (req, res) =>{
     try {
         await ModelUserTraderPeticion.findByIdAndUpdate(req.params.id, {
             Status: "Completado"
@@ -36,18 +41,21 @@ exports.TerminarPeticion = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
-}
-exports.CancelarPeticion = async (req, res) =>{
+})
+
+router.put('/PeticionCancelada/:id', verifyToken, async (req, res) =>{
     try {
         await ModelUserTraderPeticion.findByIdAndUpdate(req.params.id, {
+            IDUserTrader: "",
             Status: "En espera"
         })        
         res.send();
     } catch (error) {
         console.log(error);
     }
-}
-exports.verPeticionesTraderAceptadas = async (req, res) =>{
+})
+
+router.get('/PeticionesAceptadas/:id', verifyToken, async (req, res) =>{
     try {
         const data = await ModelUserTraderPeticion.find({
             IDUserTrader : req.params.id
@@ -56,9 +64,9 @@ exports.verPeticionesTraderAceptadas = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
-}
+})
 
-exports.ActualizarUbicacion = async (req, res) =>{
+router.put("/Ubicacion/:id", verifyToken,async (req, res) =>{
     try {
         await ModelUserTrader.findByIdAndUpdate(req.params.id, {
             Ubicacion: req.body.Ubicacion
@@ -67,7 +75,8 @@ exports.ActualizarUbicacion = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
-}
+})
+
 exports.IniciarSesionTrader = async (req, res) => {
     const { telefono, Password } = req.body;
     const data = await ModelUserTrader.findOne({telefono});
@@ -76,3 +85,27 @@ exports.IniciarSesionTrader = async (req, res) => {
     const token = jwt.sign({_id: data._id}, 'secretkey');
     return res.status(200).json({token});
 }
+
+async function verifyToken(req, res, next) {
+	try {
+		if (!req.headers.authorization) {
+			return res.status(401).send('Unauhtorized Request');
+		}
+		let token = req.headers.authorization.split(' ')[1];
+		if (token === 'null') {
+			return res.status(401).send('Unauhtorized Request');
+		}
+
+		const payload = await jwt.verify(token, 'secretkey');
+		if (!payload) {
+			return res.status(401).send('Unauhtorized Request');
+		}
+		req.userId = payload._id;
+		next();
+	} catch(e) {
+		//console.log(e)
+		return res.status(401).send('Unauhtorized Request');
+	}
+}
+
+module.exports = router;

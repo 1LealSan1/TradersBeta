@@ -2,21 +2,25 @@ const ModelUserClient = require("../models/ModelUserClient");
 const ModelUserTraderPeticion = require("../models/ModelUserTraderPeticion");
 const jwt = require('jsonwebtoken');
 
-exports.crearUserClient = async (req, res) =>{
+const express = require("express")
+const router = express.Router();
+
+router.post("/CrearUser", async (req, res) =>{
     try {
         let user;
 
         user = new ModelUserClient(req.body);
 
         await user.save();
-        res.send(user);
+
+        const token = jwt.sign({_id: user._id}, 'secretkey');
+        res.status(200).json({token});
         
     } catch (error) {
         console.log(error);
     }
-}
-
-exports.crearUserTraderPeticion = async (req, res) =>{
+})
+router.post("/Peticion", verifyToken, async (req, res) =>{
     try {
         let peticion;
 
@@ -28,9 +32,9 @@ exports.crearUserTraderPeticion = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
-}
+})
 
-exports.verPeticionesUser = async (req, res) =>{
+router.get('/Peticions/:id', verifyToken, async (req, res) =>{
     try {
         const data = await ModelUserTraderPeticion.find({
             IDUserClient : req.params.id
@@ -39,18 +43,20 @@ exports.verPeticionesUser = async (req, res) =>{
     } catch (error) {
         console.log(error);
     }
-}
+})
 
-exports.ActualizarUbicacion = async (req, res) =>{
+router.put("/Ubicacion/:id", verifyToken, async (req, res) =>{
     try {
         await ModelUserClient.findByIdAndUpdate(req.params.id, {
             Ubicacion: req.body.Ubicacion
         }) 
-        res.send();
+        const data = await ModelUserClient.findById(req.params.id)
+        res.json(data);
     } catch (error) {
         console.log(error);
     }
-}
+})
+
 exports.IniciarSesionClient = async (req, res) => {
     const { telefono, Password } = req.body;
     const data = await ModelUserClient.findOne({telefono});
@@ -59,3 +65,27 @@ exports.IniciarSesionClient = async (req, res) => {
     const token = jwt.sign({_id: data._id}, 'secretkey');
     return res.status(200).json({token});
 }
+
+async function verifyToken(req, res, next) {
+	try {
+		if (!req.headers.authorization) {
+			return res.status(401).send('Unauhtorized Request');
+		}
+		let token = req.headers.authorization.split(' ')[1];
+		if (token === 'null') {
+			return res.status(401).send('Unauhtorized Request');
+		}
+
+		const payload = await jwt.verify(token, 'secretkey');
+		if (!payload) {
+			return res.status(401).send('Unauhtorized Request');
+		}
+		req.userId = payload._id;
+		next();
+	} catch(e) {
+		//console.log(e)
+		return res.status(401).send('Unauhtorized Request');
+	}
+}
+
+module.exports = router;
