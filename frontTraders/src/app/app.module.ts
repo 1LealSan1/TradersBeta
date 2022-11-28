@@ -8,6 +8,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from '../app/auth.guard';
+
+//importacion de interceptors services
+import { TokenInterceptorService } from "../app/services/token-interceptor.service";
+
 //componentes hijos
 import {LoginUserComponent } from './login-user/login-user.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -29,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +53,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule, 
     //angular material
     MatDividerModule,
     MatIconModule,
@@ -62,9 +70,17 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatPaginatorModule,
     MatSortModule,
     MatTabsModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 

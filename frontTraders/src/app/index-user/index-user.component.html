@@ -36,7 +36,7 @@
                     <mat-icon>account_circle</mat-icon>
                     <span>Configuracion</span>
                   </button>
-                  <button mat-menu-item onclick="location.href='http://localhost:4200/User/loginUser'">
+                  <button mat-menu-item (click)="authService.cerrarSesionUser()">
                     <mat-icon>home</mat-icon>
                     <span>Cerrar sesion</span>
                   </button>
@@ -50,7 +50,7 @@
         <p class="font3">Necesitas ayuda en <br><br>algo?, pide Traders</p>
         <br>
         <p>
-          <button mat-raised-button class="button-user-index">Hacer peticion</button>
+          <button mat-raised-button class="button-user-index" onclick="location.href='http://localhost:4200/User/crearPeticion'">Hacer peticion</button>
         </p>
       </div>  
     </mat-grid-tile>

@@ -17,18 +17,22 @@ const UserTraderPeticionSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Category: {
+    Oficio: {
+        type: String,
+        required: true
+    },
+    metodoPago:{
+        type: String,
+        required: true
+    },
+    Status: {
+        //tipo: en espera, en progreso, terminado
         type: String,
         required: true
     },
     IDUserTrader:{
         type: String,
         required: false
-    },
-    Status: {
-        //tipo: en espera, en progreso, terminado
-        type: String,
-        required: true
     }
 });
 

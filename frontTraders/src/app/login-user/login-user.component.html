@@ -26,7 +26,7 @@
           <u style="color: #1D56CF;">Usar numero de telefono</u><u style="color: #D0C9D0">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u>
         </div>
         <div class="alignCenter">
-          <form action="" method="post" >
+          <form (submit)="Login()">
             <mat-form-field  appearance="outline">
                 <mat-label>Pais</mat-label>
                 <mat-select [disabled]="true">
@@ -36,13 +36,17 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Numero de telefono</mat-label>
-                <input matInput type="tel" maxlength="10" min="10" placeholder="6688778877" required>
+                <input matInput #numtel type="tel" maxlength="10" min="10" placeholder="6688778877" required [(ngModel)]="user.Telefono" name="telefono">
                 <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-hint align="end">{{numtel.value.length}} / 10</mat-hint>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput type="password" required>
+                <input matInput type="password" required [(ngModel)]="user.Password" name="passowrd" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
             </mat-form-field>        
           <br>
           <button mat-button class="btn-client" style="margin-left: 2px;">Siguiente</button>  

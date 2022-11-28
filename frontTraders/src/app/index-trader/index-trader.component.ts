@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthService } from "../services/auth.service";
 @Component({
   selector: 'app-index-trader',
   templateUrl: './index-trader.component.html',
@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexTraderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }

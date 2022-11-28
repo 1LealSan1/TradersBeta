@@ -5,22 +5,40 @@ const jwt = require('jsonwebtoken');
 const express = require("express")
 const router = express.Router();
 
+router.post('/LoginUser', async (req, res)=> {
+    const { telefono, Password } = req.body;
+    const data = await ModelUserClient.findOne({telefono});
+
+    if (!data) return res.status(401).send('The Telefono doen\' exists');
+    if (data.Password !== Password) return res.status(401).send('Wrong Password');
+    
+    const token = jwt.sign({_id: data._id}, 'secretkey');
+    return res.status(200).json({token});
+})
+
 router.post("/CrearUser", async (req, res) =>{
-    try {
-        let user;
-
-        user = new ModelUserClient(req.body);
-
-        await user.save();
-
-        const token = jwt.sign({_id: user._id}, 'secretkey');
-        res.status(200).json({token});
-        
-    } catch (error) {
-        console.log(error);
+    const data = await ModelUserClient.findOne({
+        Telefono : req.body.Telefono
+    });
+    if(data == null){
+        try {
+            let user;
+    
+            user = new ModelUserClient(req.body);
+    
+            await user.save();
+    
+            const token = jwt.sign({_id: user._id}, 'secretkey');
+            res.status(200).json({token});
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }else if(data.Telefono == req.body.Telefono){
+        res.send("El numero de telefono ya existe")
     }
 })
-router.post("/Peticion", verifyToken, async (req, res) =>{
+router.post("/CrearPeticion", verifyToken, async (req, res) =>{
     try {
         let peticion;
 
@@ -56,15 +74,6 @@ router.put("/Ubicacion/:id", verifyToken, async (req, res) =>{
         console.log(error);
     }
 })
-
-exports.IniciarSesionClient = async (req, res) => {
-    const { telefono, Password } = req.body;
-    const data = await ModelUserClient.findOne({telefono});
-    if (!data) return res.status(401).send('The Telefono doen\' exists');
-    if (data.Password !== Password) return res.status(401).send('Wrong Password');
-    const token = jwt.sign({_id: data._id}, 'secretkey');
-    return res.status(200).json({token});
-}
 
 async function verifyToken(req, res, next) {
 	try {

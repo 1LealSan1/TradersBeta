@@ -7,7 +7,7 @@ const UserTraderSchema = mongoose.Schema({
     },
     Nombre: {
         type: String,
-        required: true
+        required: false
     },
     Password: {
         type: String,

@@ -10,7 +10,7 @@
   <div>
     <p>
       <mat-toolbar class="MenuBarClients font">
-        <span class="marginLogo">TradersLm</span>
+        <a href="http://localhost:4200/User/inicio" style="text-decoration: none; color: #1E1E1E;"><span class="marginLogo">TradersLm</span></a>
       </mat-toolbar>
     </p>    
   </div>
@@ -18,7 +18,7 @@
     <mat-grid-tile>
       <div class="inputCenter">
         <div class="btnExit">
-            <button mat-icon-button>
+            <button mat-icon-button  onclick="location.href='http://localhost:4200/User/inicio'">
                 <mat-icon>reply</mat-icon>
             </button>
         </div>
@@ -26,33 +26,38 @@
           <u style="color: #1e1e1eae;">Crear Peticion</u><u style="color: #D0C9D0">ㅤㅤㅤ ㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u>
         </div>
         <div class="alignCenter">
-          <form action="" method="post">
+          <form (submit)="crearPeticion()">
             <mat-form-field  appearance="outline" [style.width.px]=430>
                 <mat-label>Oficio trader</mat-label>
-                <mat-select required>
+                <mat-select required [(ngModel)]="peticion.Oficio" name="oficio">
                   <mat-option>None</mat-option>
                   <mat-option *ngFor="let oficio of oficios" [value]="oficio" >{{oficio}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline" [style.width.px]=430>
                 <mat-label>Detalles de la Peticion</mat-label>
-                <input type="text" matInput required>
-            </mat-form-field>     
+                <input type="text" matInput required [(ngModel)]="peticion.Description" name="descripcion">
+            </mat-form-field>  
+            <mat-form-field appearance="outline" [style.width.px]=430>
+              <mat-label>Direccion</mat-label>
+              <input type="text" matInput required [(ngModel)]="peticion.Location" name="direccion">
+            </mat-form-field>    
+            <mat-form-field appearance="outline" [style.width.px]=430>
+                <mat-label>Pago $</mat-label>
+                <input type="number" matInput name="pago" required [(ngModel)]="peticion.Precio" min="0" max="100000">
+            </mat-form-field> 
             <mat-form-field  appearance="outline" [style.width.px]=430>
                 <mat-label>Metodo de pago</mat-label>
-                <mat-select required>
+                <mat-select required [(ngModel)]="peticion.metodoPago" name="metodoPago">
                   <mat-option>None</mat-option>
                   <mat-option *ngFor="let listpago of listpagos" [value]="listpago">{{listpago}}</mat-option>
                 </mat-select>
             </mat-form-field><br>
-          <label><input type="checkbox" required> Acepto los términos del servicio</label>
-          <br><br>
-          <button mat-button class="btn-client" style="margin-left: 8px;">Siguiente</button>  
+          <button mat-button class="btn-client" style="margin-left: 8px;">Siguiente</button>
         </form>
         </div>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-
 </body>
 </html>

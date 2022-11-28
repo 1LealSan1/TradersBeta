@@ -5,17 +5,37 @@ const jwt = require('jsonwebtoken');
 const express = require("express")
 const router = express.Router();
 
-router.post("/CrearUser", async (req, res) =>{
-    try {
-        let user;
+router.post('/LoginTrader', async (req, res)=> {
+    const { telefono, Password } = req.body;
+    const data = await ModelUserTrader.findOne({telefono});
 
-        user = new ModelUserTrader(req.body);
+    if (!data) return res.status(401).send('The Telefono doen\' exists');
+    if (data.Password !== Password) return res.status(401).send('Wrong Password');
 
-        await user.save();
-        res.send(user);
-        
-    } catch (error) {
-        console.log(error);
+    const token2 = jwt.sign({_id: data._id}, 'secretkey');
+    return res.status(200).json({token2});
+})
+
+router.post("/CrearTrader", async (req, res) =>{
+    const data = await ModelUserTrader.findOne({
+        Telefono : req.body.Telefono
+    });
+    if(data == null){
+        try {
+            let user;
+    
+            user = new ModelUserTrader(req.body);
+    
+            await user.save();
+    
+            const token2 = jwt.sign({_id: user._id}, 'secretkey');
+            res.status(200).json({token2});
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }else if(data.Telefono == req.body.Telefono){
+        res.send("El numero de telefono ya existe")
     }
 })
 
@@ -76,15 +96,6 @@ router.put("/Ubicacion/:id", verifyToken,async (req, res) =>{
         console.log(error);
     }
 })
-
-exports.IniciarSesionTrader = async (req, res) => {
-    const { telefono, Password } = req.body;
-    const data = await ModelUserTrader.findOne({telefono});
-    if (!data) return res.status(401).send('The Telefono doen\' exists');
-    if (data.Password !== Password) return res.status(401).send('Wrong Password');
-    const token = jwt.sign({_id: data._id}, 'secretkey');
-    return res.status(200).json({token});
-}
 
 async function verifyToken(req, res, next) {
 	try {
