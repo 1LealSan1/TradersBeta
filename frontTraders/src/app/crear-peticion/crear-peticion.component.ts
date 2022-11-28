@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AuthService} from '../services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-crear-peticion',
   templateUrl: './crear-peticion.component.html',
@@ -13,15 +15,18 @@ export class CrearPeticionComponent implements OnInit {
     "Efectivo"
   ]
   peticion = {
+    IDUserClient:localStorage.getItem('token'),
     Description:null,
     Precio:null,
     Location:null,
     Oficio:null,
     metodoPago:null,
     Status:'En espera',
-    IDUserTrader:localStorage.getItem('token'),
+    IDUserTrader:null,
   }
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar,
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +37,17 @@ export class CrearPeticionComponent implements OnInit {
       this.openSnackBar("Faltan datos por llenar en su peticion")
       
     }else{
-      console.log(this.peticion)
+      console.log(this.peticion.IDUserClient);
+      this.authService.crearPeticion(this.peticion)
+      .subscribe(
+        res =>{
+          console.log(res);
+          this.router.navigate(['/User/inicio']);
+        },
+        err =>{
+          console.log(err)
+        }
+    )
       this.openSnackBar("Peticion creada correctamente")
     }
 

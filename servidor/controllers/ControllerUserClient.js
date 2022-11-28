@@ -41,7 +41,10 @@ router.post("/CrearUser", async (req, res) =>{
 router.post("/CrearPeticion", verifyToken, async (req, res) =>{
     try {
         let peticion;
+        const token = await jwt.verify(req.body.IDUserClient, 'secretkey');
 
+        req.body.IDUserClient=token;
+        
         peticion = new ModelUserTraderPeticion(req.body);
 
         await peticion.save();
