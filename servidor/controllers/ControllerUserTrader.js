@@ -97,6 +97,15 @@ router.put("/Ubicacion/:id", verifyToken,async (req, res) =>{
     }
 })
 
+router.get("/verPeticiones", verifyToken, async (req, res) =>{
+    try {
+        const data = await ModelUserTraderPeticion.find()
+        res.send(data);
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 async function verifyToken(req, res, next) {
 	try {
 		if (!req.headers.authorization) {

@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ListaPeticionesDataSource, ListaPeticionesItem } from './lista-peticiones-datasource';
-
+import { AuthService } from "../services/auth.service";
 @Component({
   selector: 'app-lista-peticiones',
   templateUrl: './lista-peticiones.component.html',
@@ -18,13 +18,23 @@ export class ListaPeticionesComponent implements AfterViewInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
-  constructor() {
-    this.dataSource = new ListaPeticionesDataSource();
+  constructor(
+    private authService: AuthService
+  ) {
+    this.dataSource = new ListaPeticionesDataSource()
   }
-
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+  ngOnInit(): void {
+    this.authService.ObtenerPeticiones()
+    .subscribe(
+      res => {
+        console.log(res)
+      },
+      err=> console.log(err)
+    )
   }
 }

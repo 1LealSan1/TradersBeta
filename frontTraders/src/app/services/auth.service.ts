@@ -60,4 +60,7 @@ export class AuthService {
     return this.http.post<any>(this.url + '/CrearPeticion', peticion)
   }
 
+  ObtenerPeticiones(){
+    return this.http.get<any>(this.url2 + '/verPeticiones')
+  }
 }
