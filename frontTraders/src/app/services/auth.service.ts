@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private url = 'http://localhost:5000/Users'
-  private url2 = 'http://localhost:5000/UsersTraders'
+  private url = 'http://46.183.118.58:5000/Users'
+  private url2 = 'http://46.183.118.58:5000/UsersTraders'
   constructor(private http: HttpClient,
     private router: Router) { }
 
