@@ -9,13 +9,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {FormsModule} from '@angular/forms'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthGuard } from '../app/auth.guard';
 
 //importacion de interceptors services
 import { TokenInterceptorService } from "../app/services/token-interceptor.service";
 
 //componentes hijos
-import {LoginUserComponent } from './login-user/login-user.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
@@ -23,9 +21,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { LoginTraderComponent } from './login-trader/login-trader.component';
 import { RegistrarTraderComponent } from './registrar-trader/registrar-trader.component';
-import { RegistrarUserComponent } from './registrar-user/registrar-user.component';
 import { IndexUserComponent } from './index-user/index-user.component';
-import { IndexTraderComponent } from './index-trader/index-trader.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatMenuModule} from '@angular/material/menu';
 import { CrearPeticionComponent } from './crear-peticion/crear-peticion.component';
@@ -36,18 +32,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AuthTraderGuard } from './auth-trader.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginUserComponent,
     LoginTraderComponent,
     RegistrarTraderComponent,
-    RegistrarUserComponent,
     IndexUserComponent,
-    IndexTraderComponent,
     CrearPeticionComponent,
     ListaPeticionesComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -74,7 +67,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSnackBarModule
   ],
   providers: [
-    AuthGuard,
+    AuthTraderGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

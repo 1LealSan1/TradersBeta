@@ -32,9 +32,9 @@ export class LoginTraderComponent implements OnInit {
       .subscribe(
         res =>{
           console.log(res);
-          localStorage.setItem('tokenTrader', res.token2);
-          localStorage.setItem('sesionToken', res.token2);
-          this.router.navigate(['/Trader/inicio']);
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('sesionToken', res.token);
+          this.router.navigate(['/User/inicio']);
         },
         err =>{
           console.log(err)

@@ -10,24 +10,8 @@
   <div>
     <p>
       <mat-toolbar class="MenuBarTrader font">
-        <a href="http://localhost:4200/Trader/inicio" style="text-decoration: none; color: #F9F7FA;"><span class="marginLogo">TradersLm</span></a>
-        <mat-accordion style="padding-left: 90px">
-            <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Direccion
-                </mat-panel-title>
-                <mat-panel-description style="padding-left: 90px">
-                    <mat-icon>room</mat-icon>
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <mat-form-field appearance="fill">
-                <mat-label>Ingresa tu direccion</mat-label>
-                <input matInput type="text">
-              </mat-form-field> 
-            </mat-expansion-panel>
-        </mat-accordion>
-        <button mat-button>Pedidos</button>
+        <a href="http://localhost:4200/User/inicio" style="text-decoration: none; color: #F9F7FA;"><span class="marginLogo">TradersLm</span></a>
+        <button mat-button style="margin-left: 20px">Pedidos</button>
         <div>
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
               <mat-icon>more_vert</mat-icon>
@@ -37,7 +21,7 @@
                 <mat-icon>account_circle</mat-icon>
                 <span>Configuracion</span>
               </button>
-              <button mat-menu-item onclick="location.href='http://localhost:4200/Trader/loginTrader'">
+              <button mat-menu-item onclick="location.href='http://localhost:4200/User/login'">
                 <mat-icon>home</mat-icon>
                 <span>Cerrar sesion</span>
               </button>

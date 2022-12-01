@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  private url = 'http://46.183.118.58:5000/Users'
-  private url2 = 'http://46.183.118.58:5000/UsersTraders'
+  private url = 'http://localhost:5000/Users'
+  private url2 = 'http://localhost:5000/UsersTraders'
 
   constructor(private http: HttpClient,
     private router: Router) { }
@@ -16,7 +16,7 @@ export class AuthService {
   }
   
   RegistrarTrader(user: any){
-    return this.http.post<any>(this.url2 + '/CrearTrader', user)
+    return this.http.post<any>(this.url + '/CrearUser', user)
   }
 
   LoginUser(user: any){
@@ -24,23 +24,15 @@ export class AuthService {
   }
 
   LoginTrader(user: any){
-    return this.http.post<any>(this.url2 + '/LoginTrader', user)
+    return this.http.post<any>(this.url + '/LoginUser', user)
   }
   
   loggedInUser(){
     return !!localStorage.getItem('token');
   }
 
-  loggedInTrader(){
-    return !!localStorage.getItem('tokenTrader')
-  }
-
   getToken(){
     return localStorage.getItem('token')
-  }
-
-  getTokenTrader(){
-    return localStorage.getItem('tokenTrader')
   }
 
   getTokenSesion(){
@@ -49,12 +41,7 @@ export class AuthService {
   
   cerrarSesionUser(){
     localStorage.removeItem('token')
-    this.router.navigate(['/User/loginUser'])
-  }
-
-  cerrarSesionTrader(){
-    localStorage.removeItem('tokenTrader')
-    this.router.navigate(['/Trader/loginTrader'])
+    this.router.navigate(['/User/login'])
   }
 
   crearPeticion(peticion: any){
