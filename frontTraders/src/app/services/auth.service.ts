@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private url = 'http://46.183.118.58:5000/Users'
   private url2 = 'http://46.183.118.58:5000/UsersTraders'
+
   constructor(private http: HttpClient,
     private router: Router) { }
 
