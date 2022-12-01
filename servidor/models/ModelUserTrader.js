@@ -7,7 +7,7 @@ const UserTraderSchema = mongoose.Schema({
     },
     Nombre: {
         type: String,
-        required: true
+        required: false
     },
     Password: {
         type: String,
@@ -19,7 +19,7 @@ const UserTraderSchema = mongoose.Schema({
     },
     Oficio:{
         type: String,
-        required: true
+        required: false
     }
 });
 

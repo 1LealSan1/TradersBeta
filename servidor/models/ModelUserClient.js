@@ -7,16 +7,24 @@ const UserTraderSchema = mongoose.Schema({
     },
     Nombre: {
         type: String,
-        required: true
+        required: false
     },
     Password: {
         type: String,
         required: true
     },
+    Oficio:{
+        type: String,
+        required: false
+    },
     Ubicacion: {
         type: String,
+        required: false
+    },
+    TrabajosCompletados:{
+        type: Number,
         required: false
     }
 });
 
-module.exports = mongoose.model('UsersClients', UserTraderSchema);
+module.exports = mongoose.model('Users', UserTraderSchema);

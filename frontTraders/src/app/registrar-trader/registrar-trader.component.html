@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrar Traders</title>
+</head>
+<body>
+  <div>
+    <p>
+      <mat-toolbar class="MenuBarTrader font">
+        <span class="marginLogo">TradersLm</span>
+      </mat-toolbar>
+    </p>    
+  </div>
+  <mat-grid-list cols="1" rowHeight="3:1">
+    <mat-grid-tile>
+      <div class="inputCenter">
+        <div class="alignCenter font">
+          <span>Crear Cuenta Trader</span>
+          <br>
+        </div>
+        <div class="alignCenter font2">
+          <u style="color: #A88493;">Usar numero de telefono</u><u style="color: #D0C9D0">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u>
+        </div>
+        <div class="alignCenter">
+          <form (submit)="RegistrarTrader()">
+            <mat-form-field appearance="outline">
+                <mat-label>Pais</mat-label>
+                <mat-select>
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let pais of paises" [value]="pais">{{pais}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Numero de telefono</mat-label>
+                <input matInput #numtel type="tel" maxlength="10" min="10" placeholder="6688778877" required [(ngModel)]="user.Telefono" name="telefono">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <mat-hint align="end">{{numtel.value.length}} / 10</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" required [(ngModel)]="user.Password" name="passowrd"  [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <br>          
+            <mat-form-field appearance="outline">
+              <mat-label>Repetir Password</mat-label>
+              <input matInput type="password" required name="confirmPassword" [(ngModel)]="confirmPassword" [type]="hide ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+          </mat-form-field>
+          <div>
+            <label><input type="checkbox" required> Acepto los términos del servicio</label>
+          </div>
+          <button mat-button class="btn-trader" style="margin-left: 0.5px;">Siguiente</button>  
+        </form>
+        </div>
+        <div class="alignCenter font2">
+          <u style="color: #A88493;">tienes una cuenta?</u> 
+          <a href="http://localhost:4200/Trader/loginTrader" style="text-decoration: none;">
+            <u style="color: #B4A8AA">,iniciar sesion en tu cuenta</u>
+          </a>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+</body>
+</html>

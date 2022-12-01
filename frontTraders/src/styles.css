@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+
+body { 
+    height: 100%; 
+    background-color: #CFD1E0;
+    margin: 0;
+}
+.btnExit{
+    margin-left: 10px;
+    margin-top: 10px;
+    opacity: 75%;
+}
+.MenuBarClients{
+    background-color: #B4A8AA;
+    color: #1E1E1E;
+}
+.MenuBarTrader{
+    background-color: #A88493;
+    color: #F9F7FA;
+    opacity: 70%;
+}
+.MenuInicioClients{
+    background-color: #D0C9D0;
+    color: #1E1E1E;
+}
+.MenuInicioTrader{
+    background-color: #6a77934a;
+    color: #1E1E1E;
+}
+.marginLogo{
+    margin-left: 10px
+}
+.labelmenu{
+    margin-left: 100px;
+}
+.font{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 160%;
+}
+.font2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 110%;
+}
+.font4{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 200%;
+}
+.inputCenter{
+    background-color: #F9F7FA;
+    border-radius: 5px;
+    width: 470px;
+    height: 550px;
+}
+.inputCenter2{
+    background-color: #F9F7FA;
+    border-radius: 5px;
+    width: 470px;
+    height: 400px;
+}
+.inputCenterPeticiones{
+    background-color: #F9F7FA;
+    border-radius: 5px;
+    width: 1250px;
+    height: 740px;
+}
+.alignCenter{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.alignCenter2{
+    padding: 3%;
+}
+.alignCenter3{
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 2%;
+}
+.btn-client{
+    background-color: #1D56CF;
+    opacity: 70%;
+    color: #F9F7FA;
+    width: 390px;
+    height: 40px;
+}
+.btn-trader{
+    background-color: #A88493;
+    opacity: 70%;
+    color: #F9F7FA;
+    width: 390px;
+    height: 40px;  
+}
+.font3{
+    font-size: 300%;
+
+}
+.button-user-index{
+    background-color: #6A7793;
+    opacity: 90%;
+    width: 380px; 
+    height: 50px;
+    font-size: large; 
+}
+.button-trader-index{
+    background-color: #B4A8AA;
+    opacity: 90%;
+    width: 380px; 
+    height: 50px;
+    font-size: large; 
+}
+.example-small-box, .example-large-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  .example-large-box {
+    height: auto;
+    width: auto;
+  }
