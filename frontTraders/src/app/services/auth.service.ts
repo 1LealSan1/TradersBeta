@@ -10,17 +10,9 @@ export class AuthService {
 
   constructor(private http: HttpClient,
     private router: Router) { }
-
-  RegistrarUser(user: any){
-    return this.http.post<any>(this.url + '/CrearUser', user)
-  }
   
   RegistrarTrader(user: any){
     return this.http.post<any>(this.url + '/CrearUser', user)
-  }
-
-  LoginUser(user: any){
-    return this.http.post<any>(this.url + '/LoginUser', user)
   }
 
   LoginTrader(user: any){
@@ -50,5 +42,12 @@ export class AuthService {
 
   ObtenerPeticiones(){
     return this.http.get<any>(this.url2 + '/verPeticiones')
+  }
+
+  ObtenerPeticionesUser(peticion: any){
+    return this.http.post<any>(this.url + '/Peticions' ,peticion)
+  }
+  CancelarPeticionUser(value: any){
+    return this.http.delete<any>(this.url +'/PeticionCancelada/' + value)
   }
 }
