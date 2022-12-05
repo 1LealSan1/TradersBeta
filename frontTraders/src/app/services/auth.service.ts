@@ -40,10 +40,15 @@ export class AuthService {
     return this.http.post<any>(this.url + '/CrearPeticion', peticion)
   }
 
-  ObtenerPeticiones(){
-    return this.http.get<any>(this.url2 + '/verPeticiones')
+  ObtenerPeticiones(peticion: any){
+    return this.http.post<any>(this.url2 + '/verPeticiones', peticion)
   }
-
+  ObtenerOfertas(peticion: any){
+    return this.http.post<any>(this.url2 + '/obtenerOfertas', peticion)
+  }
+  ofertarPeticion(oferta: any){
+    return this.http.post<any>(this.url2 + '/OfertarPeticion',oferta)
+  }
   ObtenerPeticionesUser(peticion: any){
     return this.http.post<any>(this.url + '/Peticions' ,peticion)
   }

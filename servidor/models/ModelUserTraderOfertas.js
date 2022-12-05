@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const UserTraderPeticionSchema = mongoose.Schema({
+const UserTraderOfertaSchema = mongoose.Schema({
     IDUserClient: {
         type: String,
         required: true
@@ -9,11 +9,11 @@ const UserTraderPeticionSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    Precio: {
+    Oferta: {
         type: Number,
         required: true
     },
-    Location: {
+    Location:{
         type: String,
         required: true
     },
@@ -32,8 +32,12 @@ const UserTraderPeticionSchema = mongoose.Schema({
     },
     IDUserTrader:{
         type: String,
-        required: false
+        required: true
+    },
+    IDPeticion:{
+        type: String,
+        required: true
     }
 });
 
-module.exports = mongoose.model('UsersTradersPeticions', UserTraderPeticionSchema);
+module.exports = mongoose.model('UsersTradersOferta', UserTraderOfertaSchema);

@@ -33,6 +33,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AuthTraderGuard } from './auth-trader.guard';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { AuthTraderGuard } from './auth-trader.guard';
     MatSortModule,
     MatTabsModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule
   ],
   providers: [
     AuthTraderGuard,

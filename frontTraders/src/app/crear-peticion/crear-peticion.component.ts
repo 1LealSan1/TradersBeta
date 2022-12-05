@@ -20,7 +20,7 @@ export class CrearPeticionComponent implements OnInit {
     Precio:null,
     Location:null,
     Oficio:null,
-    metodoPago:null,
+    FechaHora:null,
     Status:'En espera',
     IDUserTrader:null,
   }
@@ -32,7 +32,7 @@ export class CrearPeticionComponent implements OnInit {
   }
   crearPeticion(){
     if(this.peticion.Description == null  || this.peticion.Precio == null  || 
-    this.peticion.Location == null  || this.peticion.Oficio == null  || this.peticion.metodoPago == null){
+    this.peticion.Location == null  || this.peticion.Oficio == null  || this.peticion.FechaHora == null){
 
       this.openSnackBar("Faltan datos por llenar en su peticion")
       

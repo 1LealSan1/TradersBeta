@@ -83,7 +83,7 @@ router.put("/Ubicacion/:id", verifyToken, async (req, res) =>{
 router.delete('/PeticionCancelada/:_id', verifyToken, async (req, res) =>{
     try {
         await ModelUserTraderPeticion.findByIdAndDelete(req.params)        
-         return res.send('Peticion cancelada')
+        return res.send('Peticion cancelada')
     } catch (error) {
         console.log(error);
     }

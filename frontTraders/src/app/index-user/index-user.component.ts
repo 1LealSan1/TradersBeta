@@ -12,16 +12,29 @@ export class IndexUserComponent implements OnInit {
     public authService: AuthService) { }
   ngOnInit(): void {
     this.obtenerPeticionesUser()
+    this.obtenerOfertasTrader()
   }
   peticion = {
     IDUserClient:localStorage.getItem('token'),
   }
   peticiones!: any[];
+  ofertas!: any[];
   obtenerPeticionesUser(){
     this.authService.ObtenerPeticionesUser(this.peticion)
     .subscribe(
       res =>{
         this.peticiones = res
+      },
+      err =>{
+        console.log(err)
+      }
+    )
+  }
+  obtenerOfertasTrader(){
+    this.authService.ObtenerOfertas(this.peticion)
+    .subscribe(
+      res =>{
+        this.ofertas = res
       },
       err =>{
         console.log(err)
