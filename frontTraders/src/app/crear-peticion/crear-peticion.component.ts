@@ -9,7 +9,11 @@ import { Router } from '@angular/router';
 })
 export class CrearPeticionComponent implements OnInit {
   oficios: string[] = [
-    "Carpintero"
+    "Carpintero",
+    "Pintor",
+    "Plomero",
+    "Albañil",
+    "Otros",
   ]
   listpagos: string[] = [
     "Efectivo"
@@ -42,15 +46,14 @@ export class CrearPeticionComponent implements OnInit {
       .subscribe(
         res =>{
           console.log(res);
-          this.router.navigate(['/User/inicio']);
         },
         err =>{
           console.log(err)
         }
     )
       this.openSnackBar("Peticion creada correctamente")
+      this.router.navigate(['/User/inicio']);
     }
-
   }  
   openSnackBar(mensaje: any) {
     return this._snackBar.open(mensaje,'Aceptar');

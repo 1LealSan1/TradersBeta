@@ -18,8 +18,8 @@ const routes: Routes = [
   { path: "Trader/loginTrader", component: LoginTraderComponent},
   { path: "User/inicio", component: IndexUserComponent, canActivate:[AuthGuard]},
   { path: "Trader/inicio", component: IndexTraderComponent, canActivate:[AuthTraderGuard]},
-  { path: "User/crearPeticion", component: CrearPeticionComponent},
-  { path: "Trader/verPeticiones", component: ListaPeticionesComponent},
+  { path: "User/crearPeticion", component: CrearPeticionComponent, canActivate:[AuthGuard]},
+  { path: "Trader/verPeticiones", component: ListaPeticionesComponent, canActivate:[AuthTraderGuard]}
 ];
 
 @NgModule({
