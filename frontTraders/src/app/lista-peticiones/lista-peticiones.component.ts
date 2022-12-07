@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from "../services/auth.service";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-lista-peticiones',
   templateUrl: './lista-peticiones.component.html',
@@ -9,7 +10,8 @@ import { AuthService } from "../services/auth.service";
 export class ListaPeticionesComponent implements OnInit{
 
   constructor(private _snackBar: MatSnackBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   peticion = {
@@ -53,9 +55,11 @@ export class ListaPeticionesComponent implements OnInit{
       .subscribe(
         res =>{
           this.openSnackBar(res)
+          this.router.navigate(['/User/inicio'])
         },
         err =>{
           this.openSnackBar(err.error.text)
+          this.router.navigate(['/User/inicio'])     
         }
       )
     }

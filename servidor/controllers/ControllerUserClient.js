@@ -1,5 +1,6 @@
 const ModelUserClient = require("../models/ModelUserClient");
 const ModelUserTraderPeticion = require("../models/ModelUserTraderPeticion");
+const ModelUserTraderOfertas = require("../models/ModelUserTraderOfertas")
 const jwt = require('jsonwebtoken');
 
 const express = require("express")
@@ -38,6 +39,7 @@ router.post("/CrearUser", async (req, res) =>{
         res.send("El numero de telefono ya existe")
     }
 })
+
 router.post("/CrearPeticion", verifyToken, async (req, res) =>{
     try {
         let peticion;
@@ -68,13 +70,37 @@ router.post('/Peticions', verifyToken, async (req, res) =>{
     }
 })
 
-router.put("/Ubicacion/:id", verifyToken, async (req, res) =>{
+router.post('/obtenerOfertasUser', verifyToken, async (req, res) =>{
     try {
-        await ModelUserClient.findByIdAndUpdate(req.params.id, {
-            Ubicacion: req.body.Ubicacion
-        }) 
-        const data = await ModelUserClient.findById(req.params.id)
-        res.json(data);
+        const token = await jwt.verify(req.body.IDUserClient, 'secretkey');
+
+        const data = await ModelUserTraderOfertas.find({
+            IDUserClient : token,
+            Status:'En espera'
+        });
+        res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.put('/AceptarOferta', verifyToken, async (req, res) =>{
+    try {
+        const data = await ModelUserTraderOfertas.findByIdAndUpdate(req.body._id,{
+            Status: 'En proceso'
+        })
+        await ModelUserTraderPeticion.findByIdAndUpdate(req.body.IDPeticion,{
+            Precio: data.Oferta,
+            IDUserTrader: data.IDUserTrader,
+            Status: 'En proceso'
+        })
+
+        await ModelUserTraderOfertas.deleteMany({
+            IDPeticion: req.body.IDPeticion,
+            Status: 'En espera'
+        })
+
+        return res.send('Peticion Aceptada')
     } catch (error) {
         console.log(error);
     }
@@ -82,7 +108,10 @@ router.put("/Ubicacion/:id", verifyToken, async (req, res) =>{
 
 router.delete('/PeticionCancelada/:_id', verifyToken, async (req, res) =>{
     try {
-        await ModelUserTraderPeticion.findByIdAndDelete(req.params)        
+        await ModelUserTraderPeticion.findByIdAndDelete(req.params) 
+        await ModelUserTraderOfertas.findOneAndDelete({
+            IDPeticion: req.params
+        }) 
         return res.send('Peticion cancelada')
     } catch (error) {
         console.log(error);

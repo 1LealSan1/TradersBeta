@@ -9,10 +9,10 @@ import { IndexUserComponent } from './index-user/index-user.component';
 
 const routes: Routes = [
   { path: "User/registrar", component: RegistrarTraderComponent},
-  { path: "User/login", component: LoginTraderComponent},
+  { path: "", component: LoginTraderComponent},
   { path: "User/inicio", component: IndexUserComponent, canActivate:[AuthTraderGuard]},
-  { path: "User/crearPeticion", component: CrearPeticionComponent},
-  { path: "User/verPeticiones", component: ListaPeticionesComponent},
+  { path: "User/crearPeticion", component: CrearPeticionComponent, canActivate:[AuthTraderGuard]},
+  { path: "User/verPeticiones", component: ListaPeticionesComponent, canActivate:[AuthTraderGuard]},
 ];
 
 @NgModule({

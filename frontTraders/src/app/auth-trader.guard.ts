@@ -16,7 +16,7 @@ export class AuthTraderGuard implements CanActivate {
       return true;
     }
 
-    this.router.navigate(['/User/login'])
+    this.router.navigate([''])
     return false
   }
   

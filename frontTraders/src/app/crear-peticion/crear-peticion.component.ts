@@ -32,25 +32,30 @@ export class CrearPeticionComponent implements OnInit {
   }
   crearPeticion(){
     if(this.peticion.Description == null  || this.peticion.Precio == null  || 
-    this.peticion.Location == null  || this.peticion.Oficio == null  || this.peticion.FechaHora == null){
+    this.peticion.Location == null  || this.peticion.Oficio == null  || this.peticion.FechaHora == null 
+    ){
 
       this.openSnackBar("Faltan datos por llenar en su peticion")
       
     }else{
-      console.log(this.peticion.IDUserClient);
-      this.authService.crearPeticion(this.peticion)
-      .subscribe(
-        res =>{
-          console.log(res);
-          this.router.navigate(['/User/inicio']);
-        },
-        err =>{
-          console.log(err)
-        }
-    )
-      this.openSnackBar("Peticion creada correctamente")
+      if(this.peticion.Precio <150){
+        this.openSnackBar("Favor de introducir un precio igual o mayor a $150 mxn")
+      }
+      else{
+          console.log(this.peticion.IDUserClient);
+          this.authService.crearPeticion(this.peticion)
+          .subscribe(
+            res =>{
+              console.log(res);
+              this.router.navigate(['/User/inicio']);
+            },
+            err =>{
+              console.log(err)
+            }
+        )
+          this.openSnackBar("Peticion creada correctamente")
+      }
     }
-
   }  
   openSnackBar(mensaje: any) {
     return this._snackBar.open(mensaje,'Aceptar');

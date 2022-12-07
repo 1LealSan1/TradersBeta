@@ -16,10 +16,6 @@
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item>
-                    <mat-icon>account_circle</mat-icon>
-                    <span>Configuracion</span>
-                  </button>
                   <button mat-menu-item (click)="authService.cerrarSesionUser()">
                     <mat-icon>home</mat-icon>
                     <span>Cerrar sesion</span>
@@ -58,30 +54,30 @@
                 <th>Fecha y hora</th>
                 <th>Status</th>
               </tr>
-              <tr *ngFor="let item of peticiones">
+              <tr *ngFor="let item3 of ofertasUser">
                 <td>
-                  {{item.Description}}                   
+                  {{item3.Description}}                   
                 </td>
                 <td>
-                  {{item.IDUserClient}}
+                  {{item3.IDUserTrader}}
                 </td>
                 <td>
-                  {{item.Location}}
+                  {{item3.Location}}
                 </td>
                 <td>
-                  {{item.Oficio}}
+                  {{item3.Oficio}}
                 </td>
                 <td>
-                  {{item.Precio}}
+                  {{item3.Oferta}}
                 </td>
                 <td>
-                  {{item.FechaHora}}
+                  {{item3.FechaHora}}
                 </td>
                 <td>
-                  {{item.Status}}
+                  {{item3.Status}}
                 </td>
                 <td>
-                  <button (click)="cancelarPeticion(item._id)">Aceptar</button>
+                  <button (click)="AceptarOferta(item3._id, item3.IDPeticion)">Aceptar</button>
                 </td>
               </tr>
             </table>
@@ -96,6 +92,7 @@
                 <th>Ubicacion</th>
                 <th>Oficio</th>
                 <th>Precio</th>
+                <th>Fecha y hora</th>
                 <th>Status</th>
               </tr>
               <tr *ngFor="let item2 of ofertas">
@@ -113,6 +110,9 @@
                 </td>
                 <td>
                   {{item2.Oferta}}
+                </td>
+                <td>
+                  {{item2.FechaHora}}
                 </td>
                 <td>
                   {{item2.Status}}
@@ -155,8 +155,50 @@
                 <td>
                   {{item.Status}}
                 </td>
+                <td *ngIf="item.Status=='En proceso' || item.Status=='En espera'">
+                  <button (click)="cancelarPeticion(item._id)" aria-placeholder="Cancelar peticion"><mat-icon>clear</mat-icon></button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-tab><mat-tab label="Historial de trabajos">
+          <div class="example-large-box mat-elevation-z8">
+            <table>
+              <tr>
+                <th>Descripcion</th>
+                <th>Id del Trader</th>
+                <th>Ubicacion</th>
+                <th>Oficio</th>
+                <th>Precio</th>
+                <th>Fecha y hora</th>
+                <th>Status</th>
+              </tr>
+              <tr *ngFor="let item4 of trabajos">
                 <td>
-                  <button (click)="cancelarPeticion(item._id)">Cancelar</button>
+                  {{item4.Description}}                   
+                </td>
+                <td>
+                  {{item4.IDUserClient}}
+                </td>
+                <td>
+                  {{item4.Location}}
+                </td>
+                <td>
+                  {{item4.Oficio}}
+                </td>
+                <td>
+                  {{item4.Oferta}}
+                </td>
+                <td>
+                  {{item4.FechaHora}}
+                </td>
+                <td>
+                  {{item4.Status}}
+                </td>
+                <td *ngIf="item4.Status=='En proceso'">
+                  <div>
+                    <button (click)="CompletarTrabajo(item4._id)"><mat-icon>done</mat-icon></button>
+                  </div>
                 </td>
               </tr>
             </table>

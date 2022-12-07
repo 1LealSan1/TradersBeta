@@ -33,7 +33,7 @@ export class AuthService {
   
   cerrarSesionUser(){
     localStorage.removeItem('token')
-    this.router.navigate(['/User/login'])
+    this.router.navigate([''])
   }
 
   crearPeticion(peticion: any){
@@ -46,6 +46,9 @@ export class AuthService {
   ObtenerOfertas(peticion: any){
     return this.http.post<any>(this.url2 + '/obtenerOfertas', peticion)
   }
+  obtenerOfertasUser(peticion: any){
+    return this.http.post<any>(this.url + '/obtenerOfertasUser', peticion)
+  }
   ofertarPeticion(oferta: any){
     return this.http.post<any>(this.url2 + '/OfertarPeticion',oferta)
   }
@@ -54,5 +57,14 @@ export class AuthService {
   }
   CancelarPeticionUser(value: any){
     return this.http.delete<any>(this.url +'/PeticionCancelada/' + value)
+  }
+  AceptarOferta(aceptOfert: any){
+    return this.http.put<any>(this.url +'/AceptarOferta', aceptOfert)
+  }
+  obtenerTrabajosTrader(peticion: any){
+    return this.http.post<any>(this.url2 +'/verTrabajosComplete', peticion)
+  }
+  CompletarTrabajo(peticion: any){
+    return this.http.put<any>(this.url2 +'/completarTrabajo', peticion)
   }
 }

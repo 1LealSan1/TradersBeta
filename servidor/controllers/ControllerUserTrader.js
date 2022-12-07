@@ -6,66 +6,11 @@ const jwt = require('jsonwebtoken');
 const express = require("express")
 const router = express.Router();
 
-router.put('/PeticionAceptada/:id',  verifyToken, async (req, res) =>{
-    try {
-        await ModelUserTraderPeticion.findByIdAndUpdate(req.params.id, {
-            IDUserTrader: req.body.IDUserTrader,
-        });
-        // Send response in here
-        res.send();
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-router.put('/PeticionCompletada/:id', verifyToken,async (req, res) =>{
-    try {
-        await ModelUserTraderPeticion.findByIdAndUpdate(req.params.id, {
-            Status: "Completado"
-        })
-        res.send();
-    } catch (error) {
-        console.log(error);
-    }
-})
-
-router.put('/PeticionCancelada/:id', verifyToken, async (req, res) =>{
-    try {
-        await ModelUserTraderPeticion.findByIdAndUpdate(req.params.id, {
-            IDUserTrader: "",
-            Status: "En espera"
-        })        
-        res.send();
-    } catch (error) {
-        console.log(error);
-    }
-})
-
-router.get('/PeticionesAceptadas/:id', verifyToken, async (req, res) =>{
-    try {
-        const data = await ModelUserTraderPeticion.find({
-            IDUserTrader : req.params.id
-        });
-        res.json(data)
-    } catch (error) {
-        console.log(error);
-    }
-})
-
-router.put("/Ubicacion/:id", verifyToken,async (req, res) =>{
-    try {
-        await ModelUserClient.findByIdAndUpdate(req.params.id, {
-            Ubicacion: req.body.Ubicacion
-        }) 
-        res.send();
-    } catch (error) {
-        console.log(error);
-    }
-})
-
 router.post("/verPeticiones", verifyToken, async (req, res) =>{
     try {
-        const data = await ModelUserTraderPeticion.find()
+        const data = await ModelUserTraderPeticion.find({
+            Status:'En espera'
+        })
         res.send(data);
     } catch (error) {
         console.log(error);
@@ -75,9 +20,9 @@ router.post('/obtenerOfertas', verifyToken, async (req, res) =>{
     try {
         const token = await jwt.verify(req.body.IDUserClient, 'secretkey');
         const data2 = await ModelUserTraderOfertas.find({
-            IDUserTrader: token
+            IDUserTrader: token,
+            Status: 'En espera'
         });
-        console.log(data2)
         res.send(data2)
     } catch (error) {
         console.log(error);
@@ -102,6 +47,32 @@ router.post("/OfertarPeticion", verifyToken, async (req, res) =>{
         })
         await peticion.save();
         res.send("Oferta efectuada a la peticion")
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.post('/verTrabajosComplete', verifyToken, async (req, res) =>{
+    try {
+        const token = await jwt.verify(req.body.IDUserClient, 'secretkey');
+        const data = await ModelUserTraderOfertas.find({
+            IDUserTrader: token._id,
+        })
+        res.send(data)
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.put('/completarTrabajo', verifyToken, async (req, res) =>{
+    try {
+        const data = await ModelUserTraderOfertas.findByIdAndUpdate(req.body._id,{
+            Status: 'Completado'
+        })
+        await ModelUserTraderPeticion.findByIdAndUpdate(data.IDPeticion,{
+            Status: 'Completado'
+        })
+        res.send('Status del trabajo actualizado a completado')
     } catch (error) {
         console.log(error);
     }
