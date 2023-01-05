@@ -22,6 +22,7 @@ export class IndexUserComponent implements OnInit {
   }
   aceptOfert ={
   }
+  rechazarOfert ={}
   completarTrabajo={
   }
   peticiones!: any[];
@@ -98,6 +99,18 @@ export class IndexUserComponent implements OnInit {
       err=>{
         console.log(err)
         window.location.reload();
+        this.openSnackBar(err.error.text)
+      }
+    )
+  }
+  RechazarOferta(_id: any){
+    this.rechazarOfert = _id
+    this.authService.RechazarOferta(this.rechazarOfert)
+    .subscribe(
+      res =>{
+        this.openSnackBar(res)
+      },
+      err=>{
         this.openSnackBar(err.error.text)
       }
     )

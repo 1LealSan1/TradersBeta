@@ -78,7 +78,11 @@
                   {{item3.Status}}
                 </td>
                 <td>
-                  <button (click)="AceptarOferta(item3._id, item3.IDPeticion)">Aceptar</button>
+                  <div>
+                    <button mat-button (click)="AceptarOferta(item3._id, item3.IDPeticion)" style="background: #92a88f">Aceptar</button>
+
+                    <button mat-button (click)="RechazarOferta(item3._id)" style="background: #e56158; margin: 5px;">Rechazar</button>
+                  </div>
                 </td>
               </tr>
             </table>

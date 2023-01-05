@@ -54,33 +54,33 @@
                 <th>Ofertar</th>
               </tr>
               <tr *ngFor="let item of peticiones">
-                <td>
-                  {{item.Description}}                   
-                </td>
-                <td>
-                  {{item.IDUserClient}}
-                </td>
-                <td>
-                  {{item.Location}}
-                </td>
-                <td>
-                  {{item.Oficio}}
-                </td>
-                <td>
-                  {{item.Precio}}
-                </td>
-                <td>
-                  {{item.FechaHora}}
-                </td>
-                <td>
-                  <form>
-                    <div>
-                      <input type="number" [name]="item._id" required  min="150" max="100000" [(ngModel)]="oferta.Oferta">
-                      <button mat-button (click)="ofertarPeticion(item.Precio,item._id)" 
-                      style="background-color:#1D56CF; color: #F9F7FA; margin-left: 10px;">Ofertar</button>
-                    </div>
-                  </form>
-                </td>
+                  <td>
+                    {{item.Description}}                   
+                  </td>
+                  <td>
+                    {{item.IDUserClient}}
+                  </td>
+                  <td>
+                    {{item.Location}}
+                  </td>
+                  <td>
+                    {{item.Oficio}}
+                  </td>
+                  <td>
+                    {{item.Precio}}
+                  </td>
+                  <td>
+                    {{item.FechaHora}}
+                  </td>
+                  <td>
+                    <form>
+                      <div>
+                        <input type="number" [name]="item._id" required  min="150" max="100000" [(ngModel)]="oferta.Oferta">
+                        <button mat-button (click)="ofertarPeticion(item.Precio,item._id)" 
+                        style="background-color:#1D56CF; color: #F9F7FA; margin-left: 10px;">Ofertar</button>
+                      </div>
+                    </form>
+                  </td>    
               </tr>
             </table>
           </div>

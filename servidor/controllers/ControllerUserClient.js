@@ -105,7 +105,14 @@ router.put('/AceptarOferta', verifyToken, async (req, res) =>{
         console.log(error);
     }
 })
-
+router.delete('/RechazarOferta/:_id', verifyToken, async (req, res) =>{
+    try {
+        await ModelUserTraderOfertas.findOneAndDelete(req.params)
+        return res.send('Peticion rechazada correctamente')
+    } catch (error) {
+        console.log(error)
+    }
+})
 router.delete('/PeticionCancelada/:_id', verifyToken, async (req, res) =>{
     try {
         await ModelUserTraderPeticion.findByIdAndDelete(req.params) 

@@ -8,10 +8,13 @@ const router = express.Router();
 
 router.post("/verPeticiones", verifyToken, async (req, res) =>{
     try {
+        const token = await jwt.verify(req.body.IDUserClient, 'secretkey');
         const data = await ModelUserTraderPeticion.find({
-            Status:'En espera'
+            Status:'En espera',
+            IDUserClient: { $ne: token._id} 
         })
-        res.send(data);
+
+        res.send(data)
     } catch (error) {
         console.log(error);
     }
@@ -57,6 +60,7 @@ router.post('/verTrabajosComplete', verifyToken, async (req, res) =>{
         const token = await jwt.verify(req.body.IDUserClient, 'secretkey');
         const data = await ModelUserTraderOfertas.find({
             IDUserTrader: token._id,
+            $or:[{Status:'En proceso'}, {Status:'Completado'}] 
         })
         res.send(data)
     } catch (error) {

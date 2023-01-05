@@ -61,6 +61,9 @@ export class AuthService {
   AceptarOferta(aceptOfert: any){
     return this.http.put<any>(this.url +'/AceptarOferta', aceptOfert)
   }
+  RechazarOferta(rechazarOfert: any){
+    return this.http.delete<any>(this.url +'/RechazarOferta/' + rechazarOfert)
+  }
   obtenerTrabajosTrader(peticion: any){
     return this.http.post<any>(this.url2 +'/verTrabajosComplete', peticion)
   }
