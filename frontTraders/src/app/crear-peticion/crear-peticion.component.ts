@@ -9,7 +9,13 @@ import { Router } from '@angular/router';
 })
 export class CrearPeticionComponent implements OnInit {
   oficios: string[] = [
-    "Carpintero"
+    "Carpintero",
+    "Pintor",
+    "Herrero",
+    "Albañil",
+    "Instalador de pisos",
+    "Plomero",
+    
   ]
   listpagos: string[] = [
     "Efectivo"
