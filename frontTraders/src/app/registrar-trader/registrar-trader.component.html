@@ -14,12 +14,12 @@
       </mat-toolbar>
     </p>    
   </div>
-  <mat-grid-list cols="1" rowHeight="3:1">
+  <mat-grid-list cols="1" rowHeight="700px">
     <mat-grid-tile>
       <div class="inputCenter">
         <div class="alignCenter font">
           <span>Crear Cuenta Trader</span>
-          <br>
+          <br><br>
         </div>
         <div class="alignCenter font2">
           <u style="color: #A88493;">Usar numero de telefono</u><u style="color: #D0C9D0">ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u>
@@ -54,16 +54,20 @@
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
           </mat-form-field>
-          <div>
-            <label><input type="checkbox" required> Acepto los términos del servicio</label>
-          </div>
-          <button mat-button class="btn-trader" style="margin-left: 0.5px;">Siguiente</button>  
+          <mat-form-field  appearance="outline" [style.width.px]=430>
+            <mat-label>Oficio trader</mat-label>
+            <mat-select required [(ngModel)]="user.Oficio" name="oficio">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let oficio of oficios" [value]="oficio" >{{oficio}}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+          <button mat-button class="btn-trader" style="margin-left: 0.5px;" [style.width.px]=430>Siguiente</button>  
         </form>
         </div>
         <div class="alignCenter font2">
           <u style="color: #A88493;">tienes una cuenta?</u> 
-          <a href="http://localhost:4200/Trader/loginTrader" style="text-decoration: none;">
-            <u style="color: #B4A8AA">,iniciar sesion en tu cuenta</u>
+          <a href="http://localhost:4200" style="text-decoration: none;">
+            <u style="color: #B4A8AA">, iniciar sesion en tu cuenta</u>
           </a>
         </div>
       </div>

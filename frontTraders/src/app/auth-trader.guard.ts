@@ -12,11 +12,11 @@ export class AuthTraderGuard implements CanActivate {
     private router: Router
   ){}
   canActivate(): boolean{
-    if(this.authService.loggedInTrader()) {
+    if(this.authService.loggedInUser()) {
       return true;
     }
 
-    this.router.navigate(['/Trader/loginTrader'])
+    this.router.navigate([''])
     return false
   }
   

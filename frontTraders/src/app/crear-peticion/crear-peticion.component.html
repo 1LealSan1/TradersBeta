@@ -27,34 +27,31 @@
         </div>
         <div class="alignCenter">
           <form (submit)="crearPeticion()">
-            <mat-form-field  appearance="outline" [style.width.px]=430>
-                <mat-label>Oficio trader</mat-label>
-                <mat-select required [(ngModel)]="peticion.Oficio" name="oficio">
-                  <mat-option>None</mat-option>
-                  <mat-option *ngFor="let oficio of oficios" [value]="oficio" >{{oficio}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <mat-form-field appearance="outline" [style.width.px]=430>
-                <mat-label>Detalles de la Peticion</mat-label>
-                <input type="text" matInput required [(ngModel)]="peticion.Description" name="descripcion">
-            </mat-form-field>  
-            <mat-form-field appearance="outline" [style.width.px]=430>
-              <mat-label>Direccion</mat-label>
-              <input type="text" matInput required [(ngModel)]="peticion.Location" name="direccion">
-            </mat-form-field>    
-            <mat-form-field appearance="outline" [style.width.px]=430>
-                <mat-label>Pago $</mat-label>
-                <input type="number" matInput name="pago" required [(ngModel)]="peticion.Precio" min="0" max="100000">
-            </mat-form-field> 
-            <mat-form-field  appearance="outline" [style.width.px]=430>
-                <mat-label>Metodo de pago</mat-label>
-                <mat-select required [(ngModel)]="peticion.metodoPago" name="metodoPago">
-                  <mat-option>None</mat-option>
-                  <mat-option *ngFor="let listpago of listpagos" [value]="listpago">{{listpago}}</mat-option>
-                </mat-select>
-            </mat-form-field><br>
-          <button mat-button class="btn-client" style="margin-left: 8px;">Siguiente</button>
-        </form>
+              <mat-form-field  appearance="outline" [style.width.px]=430>
+                  <mat-label>Oficio trader</mat-label>
+                  <mat-select required [(ngModel)]="peticion.Oficio" name="oficio">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let oficio of oficios" [value]="oficio" >{{oficio}}</mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline" [style.width.px]=430>
+                  <mat-label>Detalles de la Peticion</mat-label>
+                  <input type="text" matInput required [(ngModel)]="peticion.Description" name="descripcion">
+              </mat-form-field>  
+              <mat-form-field appearance="outline" [style.width.px]=430>
+                <mat-label>Direccion</mat-label>
+                <input type="text" matInput required [(ngModel)]="peticion.Location" name="direccion">
+              </mat-form-field>    
+              <mat-form-field appearance="outline" [style.width.px]=430>
+                  <mat-label>Pago $</mat-label>
+                  <input type="number" matInput name="pago" required [(ngModel)]="peticion.Precio" min="150" max="100000">
+              </mat-form-field> 
+              <mat-form-field  appearance="outline" [style.width.px]=430>
+                  <mat-label>Fecha y hora</mat-label>
+                  <input matInput type="datetime-local" [(ngModel)]="peticion.FechaHora" name="fechaHora">
+              </mat-form-field><br>
+            <button mat-button class="btn-client" style="margin-left: 8px;">Siguiente</button>
+          </form>
         </div>
       </div>
     </mat-grid-tile>

@@ -1,40 +1,70 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ListaPeticionesDataSource, ListaPeticionesItem } from './lista-peticiones-datasource';
+import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from "../services/auth.service";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-lista-peticiones',
   templateUrl: './lista-peticiones.component.html',
   styleUrls: ['./lista-peticiones.component.css']
 })
-export class ListaPeticionesComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<ListaPeticionesItem>;
-  dataSource: ListaPeticionesDataSource;
+export class ListaPeticionesComponent implements OnInit{
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  constructor(private _snackBar: MatSnackBar,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  constructor(
-    private authService: AuthService
-  ) {
-    this.dataSource = new ListaPeticionesDataSource()
+  peticion = {
+    IDUserClient:localStorage.getItem('token'),
   }
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  peticiones!: any[];
+  oferta ={
+    IDUserTrader:localStorage.getItem('token'),
+    Oferta:'',
+    _id:'', 
+    IDUserClient:null,
+    Description:null,
+    Precio:null,
+    Location:null,
+    Oficio:null,
+    FechaHora:null,
+    Status:null,
   }
+
   ngOnInit(): void {
-    this.authService.ObtenerPeticiones()
+    this.obtenerPeticiones()
+  }
+
+  obtenerPeticiones(){
+    this.authService.ObtenerPeticiones(this.peticion)
     .subscribe(
-      res => {
-        console.log(res)
+      res =>{
+        this.peticiones = res
       },
-      err=> console.log(err)
+      err =>{
+        console.log(err)
+      }
     )
+  }
+  ofertarPeticion(Precio: any, _id: any){
+    this.oferta._id=_id
+    if(this.oferta.Oferta <= Precio){
+      this.openSnackBar("La oferta efectuada a la peticion no puede ser menor al precio de la peticion")
+    }else{
+      this.authService.ofertarPeticion(this.oferta)
+      .subscribe(
+        res =>{
+          this.openSnackBar(res)
+          this.router.navigate(['/User/inicio'])
+        },
+        err =>{
+          this.openSnackBar(err.error.text)
+          this.router.navigate(['/User/inicio'])     
+        }
+      )
+    }
+  }
+  openSnackBar(mensaje: any) {
+    return this._snackBar.open(mensaje,'Aceptar');
   }
 }

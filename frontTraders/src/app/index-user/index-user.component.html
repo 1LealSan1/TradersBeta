@@ -10,32 +10,12 @@
   <div> 
         <mat-toolbar class="MenuInicioClients font">
             <a href="http://localhost:4200/User/inicio" style="text-decoration: none; color: #1E1E1E;"><span class="marginLogo">TradersLm</span></a>
-            <mat-accordion style="padding-left: 90px">
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        Direccion
-                    </mat-panel-title>
-                    <mat-panel-description style="padding-left: 90px">
-                        <mat-icon>room</mat-icon>
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Ingresa tu direccion</mat-label>
-                    <input matInput type="text">
-                  </mat-form-field> 
-                </mat-expansion-panel>
-            </mat-accordion>
-            <button mat-button>Pedidos</button>
+            <button mat-button style="margin-left: 20px;">Pedidos</button>
             <div style="align-items: right;">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                   <mat-icon>more_vert</mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                  <button mat-menu-item>
-                    <mat-icon>account_circle</mat-icon>
-                    <span>Configuracion</span>
-                  </button>
                   <button mat-menu-item (click)="authService.cerrarSesionUser()">
                     <mat-icon>home</mat-icon>
                     <span>Cerrar sesion</span>
@@ -44,26 +24,189 @@
             </div>
         </mat-toolbar>
   </div>
-  <mat-grid-list cols="2" rowHeight="500px">
+  <mat-grid-list cols="1" rowHeight="500px">
     <mat-grid-tile>
       <div>
+        <br><br><br>     
         <p class="font3">Necesitas ayuda en <br><br>algo?, pide Traders</p>
         <br>
         <p>
           <button mat-raised-button class="button-user-index" onclick="location.href='http://localhost:4200/User/crearPeticion'">Hacer peticion</button>
         </p>
-      </div>  
+        <br><br>
+        <p class="font3">Te interesa <br><br>completar una <br><br> peticion?</p>
+        <br>
+        <p>
+          <button mat-raised-button class="button-trader-index" onclick="location.href='http://localhost:4200/User/verPeticiones'">Ver peticiones</button>
+        </p>
+      </div>
     </mat-grid-tile>
-    <mat-grid-tile > 
+    <mat-grid-tile> 
       <mat-tab-group dynamicHeight style="background-color: #f9f7fad7; border-radius: 8px;">
         <mat-tab label="Ofertas a tus peticiones">
           <div class="example-small-box mat-elevation-z4">
-            Small content
+            <table>
+              <tr>
+                <th>Descripcion</th>
+                <th>Id del cliente</th>
+                <th>Ubicacion</th>
+                <th>Oficio</th>
+                <th>Precio</th>
+                <th>Fecha y hora</th>
+                <th>Status</th>
+              </tr>
+              <tr *ngFor="let item3 of ofertasUser">
+                <td>
+                  {{item3.Description}}                   
+                </td>
+                <td>
+                  {{item3.IDUserTrader}}
+                </td>
+                <td>
+                  {{item3.Location}}
+                </td>
+                <td>
+                  {{item3.Oficio}}
+                </td>
+                <td>
+                  {{item3.Oferta}}
+                </td>
+                <td>
+                  {{item3.FechaHora}}
+                </td>
+                <td>
+                  {{item3.Status}}
+                </td>
+                <td>
+                  <div>
+                    <button mat-button (click)="AceptarOferta(item3._id, item3.IDPeticion)" style="background: #92a88f">Aceptar</button>
+
+                    <button mat-button (click)="RechazarOferta(item3._id)" style="background: #e56158; margin: 5px;">Rechazar</button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-tab>
+        <mat-tab label="Status de ofertas a peticiones">
+          <div class="example-small-box mat-elevation-z4">
+            <table>
+              <tr>
+                <th>Descripcion</th>
+                <th>Id del Trader</th>
+                <th>Ubicacion</th>
+                <th>Oficio</th>
+                <th>Precio</th>
+                <th>Fecha y hora</th>
+                <th>Status</th>
+              </tr>
+              <tr *ngFor="let item2 of ofertas">
+                <td>
+                  {{item2.Description}}                   
+                </td>
+                <td>
+                  {{item2.IDUserTrader}}
+                </td>
+                <td>
+                  {{item2.Location}}
+                </td>
+                <td>
+                  {{item2.Oficio}}
+                </td>
+                <td>
+                  {{item2.Oferta}}
+                </td>
+                <td>
+                  {{item2.FechaHora}}
+                </td>
+                <td>
+                  {{item2.Status}}
+                </td>
+              </tr>
+            </table>
           </div>
         </mat-tab>
         <mat-tab label="Historial de peticiones">
-          <div class="example-large-box mat-elevation-z4">
-            Large content
+          <div class="example-large-box mat-elevation-z8">
+            <table>
+              <tr>
+                <th>Descripcion</th>
+                <th>Id del cliente</th>
+                <th>Ubicacion</th>
+                <th>Oficio</th>
+                <th>Precio</th>
+                <th>Fecha y hora</th>
+                <th>Status</th>
+              </tr>
+              <tr *ngFor="let item of peticiones">
+                <td>
+                  {{item.Description}}                   
+                </td>
+                <td>
+                  {{item.IDUserClient}}
+                </td>
+                <td>
+                  {{item.Location}}
+                </td>
+                <td>
+                  {{item.Oficio}}
+                </td>
+                <td>
+                  {{item.Precio}}
+                </td>
+                <td>
+                  {{item.FechaHora}}
+                </td>
+                <td>
+                  {{item.Status}}
+                </td>
+                <td *ngIf="item.Status=='En proceso' || item.Status=='En espera'">
+                  <button (click)="cancelarPeticion(item._id)" aria-placeholder="Cancelar peticion"><mat-icon>clear</mat-icon></button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </mat-tab><mat-tab label="Historial de trabajos">
+          <div class="example-large-box mat-elevation-z8">
+            <table>
+              <tr>
+                <th>Descripcion</th>
+                <th>Id del Trader</th>
+                <th>Ubicacion</th>
+                <th>Oficio</th>
+                <th>Precio</th>
+                <th>Fecha y hora</th>
+                <th>Status</th>
+              </tr>
+              <tr *ngFor="let item4 of trabajos">
+                <td>
+                  {{item4.Description}}                   
+                </td>
+                <td>
+                  {{item4.IDUserClient}}
+                </td>
+                <td>
+                  {{item4.Location}}
+                </td>
+                <td>
+                  {{item4.Oficio}}
+                </td>
+                <td>
+                  {{item4.Oferta}}
+                </td>
+                <td>
+                  {{item4.FechaHora}}
+                </td>
+                <td>
+                  {{item4.Status}}
+                </td>
+                <td *ngIf="item4.Status=='En proceso'">
+                  <div>
+                    <button (click)="CompletarTrabajo(item4._id)"><mat-icon>done</mat-icon></button>
+                  </div>
+                </td>
+              </tr>
+            </table>
           </div>
         </mat-tab>
       </mat-tab-group>   
